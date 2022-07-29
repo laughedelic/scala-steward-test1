@@ -24,14 +24,12 @@ jobs:
           access_token: ${{ github.token }}
 
       - uses: actions/checkout@v2
-      - uses: laughedelic/coursier-setup@v1
-      - uses: coursier/cache-action@v5
 
       - name: Resolve dependencies
-        run: sbtn update
+        run: sbt --client update
 
       - name: Run tests
-        run: sbtn Test/test
+        run: sbt --client Test/test
 
       - name: Publish JUnit test report
         if: always() # publish report when tests fail
